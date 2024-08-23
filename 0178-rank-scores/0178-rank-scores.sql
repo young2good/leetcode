@@ -1,7 +1,7 @@
-/* Write your T-SQL query statement below */
+# Write your MySQL query statement below
 
-SELECT score
-     , dense_rank() over (order by score desc) as [rank]
-    FROM Scores
-    ORDER BY score desc
+select score
+     , dense_rank() over(order by score desc) as 'rank'
+     from Scores
+     ORDER BY score desc
     ;
