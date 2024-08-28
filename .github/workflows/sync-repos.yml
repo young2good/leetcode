@@ -20,8 +20,8 @@ jobs:
 
     - name: Add remote repository
       run: |
-        git remote add target https://young2good:${{ secrets.SECRET_FOR_SYNC }}@github.com/2024-SQL-Practice/young2good.git
+        git remote add origin https://young2good:${{ secrets.SECRET_FOR_SYNC }}@github.com/2024-SQL-Practice/young2good.git
 
     - name: Push changes
       run: |
-        git push target main  # 또는 동기화하고자 하는 브랜치명
+        git push origin main  # 또는 동기화하고자 하는 브랜치명
