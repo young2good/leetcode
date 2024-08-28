@@ -1,0 +1,27 @@
+name: Sync to Organization Repo
+
+on:
+  push:
+    branches:
+      - main  # 또는 동기화하고자 하는 브랜치명
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Add remote repository
+      run: |
+        git remote add target https://<USERNAME>:${{ secrets.TARGET_REPO_PAT }}@github.com/<ORG>/<TARGET_REPO>.git
+
+    - name: Push changes
+      run: |
+        git push target main  # 또는 동기화하고자 하는 브랜치명
