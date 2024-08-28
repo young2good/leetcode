@@ -17,7 +17,7 @@ Each row of this table contains the score of a game. Score is a floating point v
 
 <ul>
 	<li>The scores should be ranked from the highest to the lowest.</li>
-	<li>If there is a tie between two scores, both should have the same ranking.</li>
+	<li>If there is a tie between two scores, both should have the same ranking1.</li>
 	<li>After a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no holes between ranks.</li>
 </ul>
 
