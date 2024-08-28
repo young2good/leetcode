@@ -20,7 +20,7 @@ jobs:
 
     - name: Add remote repository
       run: |
-        git remote add target https://young2good:${{ secrets.TARGET_REPO_PAT }}@github.com/2024-SQL-Practice/young2good.git
+        git remote add target https://young2good:${{ secrets.SECRET_FOR_SYNC }}@github.com/2024-SQL-Practice/young2good.git
 
     - name: Push changes
       run: |
