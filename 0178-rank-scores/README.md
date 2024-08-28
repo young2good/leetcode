@@ -21,7 +21,7 @@ Each row of this table contains the score of a game. Score is a floating point v
 	<li>After a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no holes between ranks.</li>
 </ul>
 
-<p>Return the result table ordered by <code>score</code> in descending order1.</p>
+<p>Return the result table ordered by <code>score</code> in descending order.</p>
 
 <p>The result format is in the following example.</p>
 
