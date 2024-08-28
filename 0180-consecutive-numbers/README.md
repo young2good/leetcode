@@ -17,7 +17,7 @@ id is an autoincrement column.
 
 <p>Return the result table in <strong>any order</strong>.</p>
 
-<p>The&nbsp;result format is in the following example.Go!</p>
+<p>The&nbsp;result format is in the following example.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
