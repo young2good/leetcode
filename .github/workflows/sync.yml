@@ -24,6 +24,14 @@ jobs:
       run: |
         git remote add target https://young2good:${{ secrets.PAT }}@github.com/young2good/yh_temp.git
 
+    - name: Add changes to git
+      run: |
+        git add .
+
+    - name: Commit changes
+      run: |
+        git commit -m "Sync changes from repo A"
+
     - name: Push changes to organization repository
       run: |
         git push target main
