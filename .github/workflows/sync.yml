@@ -22,7 +22,7 @@ jobs:
 
     - name: Add remote repository
       run: |
-        git remote add target https://github.com/young2good/yh_temp.git
+        git remote add target https://young2good:${{ secrets.PAT }}@github.com/young2good/yh_temp.git
 
     - name: Push changes to organization repository
       run: |
