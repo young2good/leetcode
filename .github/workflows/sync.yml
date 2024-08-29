@@ -29,6 +29,13 @@ jobs:
         git clone https://young2good:${{ secrets.PAT }}@github.com/young2good/leetcode.git
         # 리포 A를 클론합니다. 디렉토리를 생성하고 클론합니다.
 
+    - name: Fetch and Merge Remote Changes
+      run: |
+        cd temp_folder/leetcode
+        git fetch origin
+        git merge origin/main || git merge --strategy-option theirs
+        # 원격 변경 사항을 가져오고, 로컬 브랜치와 병합합니다. 충돌 시 'theirs' 전략으로 병합합니다.
+
     - name: Check for changes
       run: |
         cd temp_folder/leetcode
@@ -38,14 +45,10 @@ jobs:
     - name: Commit and push changes to repository B
       run: |
         cd temp_folder/leetcode
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
         git add .
         git commit -m "Sync changes from repository A" || echo "No changes to commit"
         git push https://young2good:${{ secrets.PAT }}@github.com/young2good/yh_temp.git main
         # 리포 B의 변경사항을 커밋하고 푸시합니다. PAT을 사용하여 인증합니다.
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT }}
 
     - name: Clean up
       run: |
