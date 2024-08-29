@@ -1,4 +1,3 @@
-
 name: Sync test
 
 on:
@@ -23,15 +22,16 @@ jobs:
         git config user.email "actions@github.com"
         # Git 설정을 합니다. 푸시를 할 사용자 정보를 설정합니다.
 
-    - name: Clone personal repository 
+    - name: Clone personal repository
       run: |
-        E:
-        cd git-younghyun
+        mkdir temp_folder
+        cd temp_folder
         git clone https://github.com/young2good/leetcode.git
-        # 리포 A를 클론합니다.
+        # 리포 A를 클론합니다. 디렉토리를 생성하고 클론합니다.
 
     - name: Commit and push changes to repository B
       run: |
+        cd temp_folder/leetcode
         git add .
         git commit -m "Sync changes from repository A"
         git push https://young2good:${{ secrets.PAT }}@github.com/young2good/yh_temp.git main
@@ -41,5 +41,5 @@ jobs:
 
     - name: Clean up
       run: |
-        rmdir /S /Q leetcode
-        # /tmp/repoB 디렉토리를 삭제하여 클린업합니다.
+        rm -rf temp_folder
+        # 클론된 디렉토리를 삭제하여 클린업합니다.
