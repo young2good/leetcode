@@ -35,6 +35,7 @@ GitHub Actions에서 2024-SQL-Practice의 리포지토리에 푸시하기 위해
 4. `Name` 필드에 `PAT`을 입력합니다.
 5. `Value` 필드에 방금 생성한 PAT 값을 붙여넣습니다.
 6. `Add secret` 버튼을 클릭하여 저장합니다.
+7. 2024-SQL-Practice의 리포지토리에도 동일하게 설정합니다.
 
 ### 워크플로우 권한 설정
 
@@ -42,6 +43,7 @@ GitHub Actions에서 2024-SQL-Practice의 리포지토리에 푸시하기 위해
 2. `Actions` 섹션으로 이동합니다.
 3. `Workflow permissions` 항목에서 `Read and write permissions`를 선택합니다.
 4. 변경사항을 저장합니다.
+5. 2024-SQL-Practice의 리포지토리에도 동일하게 설정합니다.
 
 이 설정을 통해 GitHub Actions가 2024-SQL-Practice의 리포지토리에 대한 읽기 및 쓰기 권한을 가지게 됩니다.
 
