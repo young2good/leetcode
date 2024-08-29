@@ -23,7 +23,7 @@ jobs:
     - name: Add remote repository
       run: |
         # 원격 리포지토리 추가
-        git remote add target https://young2good:${{ secrets.SECRET_FOR_SYNC }}@github.com/2024-SQL-Practice/young2good.git
+        git remote add target https://young2good:${{ secrets.SECRET_FOR_SYNC }}@github.com/young2good/yh_temp.git
         git fetch target
 
     - name: Push changes to organization repository
