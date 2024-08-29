@@ -36,7 +36,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.SECRET_FOR_SYNC }}  # 리포A와 리포B에 동일한 PAT 사용
       with:
-        destination-github-username: 'young2good'  # 조직의 GitHub 사용자 이름
-        destination-repository-name: 'yh_temp'  # 조직 리포지토리 B의 이름
+        destination-github-username: '2024-SQL-Practice'  # 조직의 GitHub 사용자 이름
+        destination-repository-name: 'young2good'  # 조직 리포지토리 B의 이름
         commit-message: ${{ github.event.commits[0].message }}  # 푸시할 커밋 메시지
         target-branch: main  # 푸시할 브랜치    
