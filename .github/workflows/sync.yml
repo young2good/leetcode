@@ -32,6 +32,8 @@ jobs:
     - name: Commit and push changes to repository B
       run: |
         cd temp_folder/leetcode
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
         git add .
         git commit -m "Sync changes from repository A"
         git push https://young2good:${{ secrets.PAT }}@github.com/young2good/yh_temp.git main
