@@ -40,7 +40,7 @@ jobs:
         cd temp_folder/leetcode
         git add .
         git commit -m "Sync changes from repository A" || echo "No changes to commit"
-        git push --force https://young2good:${{ secrets.PAT }}@github.com/young2good/yh_temp.git main
+        git push --force https://young2good:${{ secrets.PAT }}@github.com/2024-SQL-Practice/young2good.git main
         # 리포 B의 변경사항을 커밋하고 강제로 푸시합니다. PAT을 사용하여 인증합니다.
 
     - name: Clean up
