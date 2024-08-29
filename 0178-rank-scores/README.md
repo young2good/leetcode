@@ -23,7 +23,7 @@ Each row of this table contains the score of a game. Score is a floating point v
 
 <p>Return the result table ordered by <code>score</code> in descending order.</p>
 
-<p>The result format is in the following example.Go! </p>
+<p>The result format is in the following example. </p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
