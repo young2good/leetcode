@@ -51,7 +51,7 @@ GitHub Actions에서 2024-SQL-Practice의 리포지토리에 푸시하기 위해
 
 PAT 설정이 완료되면, 자동화 작업을 설정하기 위해 필요한 GitHub Actions 워크플로우 YAML 파일을 다운로드할 수 있습니다.
 
-- [sync.yml 파일 다운로드](./.github/workflows/sync.yml)
+- [sync.yml 파일 다운로드](https://github.com/2024-SQL-Practice/young2good/blob/main/.github/workflows/sync.yml)
 
 다운로드한 `sync.yml` 파일을 개인 리포지토리의 `.github/workflows/` 디렉토리에 위치시킵니다.
 
