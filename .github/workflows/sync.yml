@@ -26,7 +26,7 @@ jobs:
       run: |
         mkdir temp_folder
         cd temp_folder
-        git clone https://github.com/young2good/leetcode.git
+        git clone https://young2good:${{ secrets.PAT }}@github.com/young2good/leetcode.git
         # 리포 A를 클론합니다. 디렉토리를 생성하고 클론합니다.
 
     - name: Commit and push changes to repository B
