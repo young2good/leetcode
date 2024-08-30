@@ -1,7 +1,7 @@
-/* Write your T-SQL query statement below */
+# Write your MySQL query statement below
 
-SELECT email
+SELECT email as Email
     FROM Person
     GROUP BY email
-    HAVING count(*) >=2
+    HAVING count(*) > 1
 ;
