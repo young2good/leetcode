@@ -13,6 +13,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0184-department-highest-salary](https://github.com/young2good/leetcode/tree/master/0184-department-highest-salary) |
 | [0197-rising-temperature](https://github.com/young2good/leetcode/tree/master/0197-rising-temperature) |
 | [0262-trips-and-users](https://github.com/young2good/leetcode/tree/master/0262-trips-and-users) |
+| [0584-find-customer-referee](https://github.com/young2good/leetcode/tree/master/0584-find-customer-referee) |
 | [0595-big-countries](https://github.com/young2good/leetcode/tree/master/0595-big-countries) |
 | [1135-customers-who-bought-all-products](https://github.com/young2good/leetcode/tree/master/1135-customers-who-bought-all-products) |
 | [1179-game-play-analysis-i](https://github.com/young2good/leetcode/tree/master/1179-game-play-analysis-i) |
