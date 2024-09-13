@@ -1,11 +1,11 @@
 import pandas as pd
 
 def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
-    df_unique_orders = orders['customerId'].unique()
+    ls_is_ordered = list(orders['customerId'].unique())
 
-    customers['is_order'] = customers.apply(lambda x:1 if x['id'] in df_unique_orders else 0, axis = 1)
-    df_ordered_customers = customers[customers['is_order'] == 0]
+    customers['is_in'] = ~customers['id'].isin(ls_is_ordered)
 
-    df_result = pd.DataFrame(df_ordered_customers['name'])
+    df_result = customers[customers['is_in'] == True]
+    df_result = df_result[['name']]
     df_result.columns = ['Customers']
     return df_result
