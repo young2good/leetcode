@@ -13,9 +13,9 @@ def students_and_examinations(students: pd.DataFrame, subjects: pd.DataFrame, ex
     df_joined2 = pd.merge(df_joined1, df_agg, how = 'left', on =['student_id','subject_name'])
 
     df_result = df_joined2
-    df_result['attended_exams'] = df_result['cnt'].apply(lambda x:0 if pd.isna(x) else x)
+    df_result['cnt'] = df_result['cnt'].fillna(0)
 
-    df_result = df_result[['student_id','student_name','subject_name','attended_exams']]
+    df_result = df_result.rename(columns = {'cnt':'attended_exams'})
 
     df_result = df_result.sort_values(['student_id','subject_name'])
 
