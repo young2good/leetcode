@@ -5,4 +5,6 @@ SELECT activity_date as 'day'
     FROM Activity
     WHERE 1=1
       AND activity_date > date_add('2019-07-27', interval -30 day)
+      AND activity_date <= '2019-07-27'
     GROUP BY activity_date
+;
