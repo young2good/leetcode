@@ -9,5 +9,5 @@ SELECT date_format(trans_date, '%Y-%m') 'month'
      , sum(amount) trans_total_amount
      , sum(case when state = 'approved' then amount else 0 end) approved_total_amount
     FROM Transactions
-    GROUP BY concat(YEAR(trans_date), '-', LPAD(MONTH(trans_date), 2, 0)), country
+    GROUP BY date_format(trans_date, '%Y-%m'), country
     ;
