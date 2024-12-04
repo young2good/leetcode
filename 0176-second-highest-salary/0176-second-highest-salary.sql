@@ -1,10 +1,25 @@
-/* Write your T-SQL query statement below */
-select max(CASE WHEN sal_rank = 2 then salary else NULL end) as SecondHighestSalary
-    from
+# Write your MySQL query statement below
+
+WITH index_number AS (
+    SELECT 1 as num 
+    UNION
+    SELECT 2 as num
+    -- SELECT num + 1 as num
+    --     FROM index_number
+    --     WHERE num < 10
+)
+
+SELECT distinct salary as SecondHighestSalary
+    FROM 
     (
-        select *
-            , dense_rank() over (order by salary desc) as sal_rank
-            from Employee
-    ) T
-    
-;
+        SELECT *
+            FROM index_number
+    ) T1
+    LEFT JOIN
+    (
+        SELECT *
+            , dense_rank () OVER (ORDER BY salary DESC) as r
+            FROM Employee
+    ) T2
+    ON T1.num = T2.r
+    WHERE num = 2
