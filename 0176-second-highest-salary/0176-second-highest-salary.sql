@@ -1,25 +1,24 @@
 # Write your MySQL query statement below
-
-WITH index_number AS (
-    SELECT 1 as num 
-    UNION
-    SELECT 2 as num
-    -- SELECT num + 1 as num
-    --     FROM index_number
-    --     WHERE num < 10
+WITH RECURSIVE RE_QUERY AS (
+    SELECT 1 as num
+    UNION ALL
+    SELECT num + 1 as num
+        FROM RE_QUERY
+        WHERE num < 10
 )
 
-SELECT distinct salary as SecondHighestSalary
-    FROM 
+SELECT distinct salary AS SecondHighestSalary
+    FROM
     (
         SELECT *
-            FROM index_number
+            FROM RE_QUERY
     ) T1
     LEFT JOIN
     (
         SELECT *
-            , dense_rank () OVER (ORDER BY salary DESC) as r
+            , DENSE_RANK() OVER(ORDER BY salary DESC) as DR
             FROM Employee
     ) T2
-    ON T1.num = T2.r
-    WHERE num = 2
+    ON T1.num = T2.DR
+    WHERE num=2
+    ;
