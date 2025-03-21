@@ -1,19 +1,12 @@
 # Write your MySQL query statement below
 WITH second_date AS (
     SELECT *
-         , DATE_ADD(first_date, interval 1 DAY) as second_date
-         FROM
-         (
-            SELECT player_id
-                , min(event_date) as first_date
-                FROM Activity
-                GROUP BY player_id
-         ) T
+         , lead(event_date) over (partition by player_id order by event_date) as next_date
+         , row_number() over(partition by player_id order by event_date) as rn
+        FROM Activity
 )
 
-SELECT convert(count(distinct T2.player_id) / count(distinct T1.player_id), decimal(3,2)) fraction
-    FROM Activity T1
-    LEFT JOIN second_date T2
-    ON T1.player_id = T2.player_id
-    AND T1.event_date = T2.second_date
+SELECT round(sum(case when DATEDIFF(next_date, event_date) = 1 then 1 else 0 end )/ count(player_id),2) fraction
+    FROM second_date
+    where rn = 1
     ;
