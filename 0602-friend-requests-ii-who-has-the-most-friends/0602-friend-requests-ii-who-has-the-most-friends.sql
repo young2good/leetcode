@@ -1,36 +1,43 @@
 # Write your MySQL query statement below
 
-WITH requested AS (
+WITH Request AS (
     SELECT requester_id
-         , count(*) as requested_cnt
-         FROM RequestAccepted
-         GROUP BY requester_id
-), accepted AS (
+         , count(*) AS r_friend
+        FROM RequestAccepted
+        GROUP BY requester_id
+), Accept AS (
     SELECT accepter_id
-         , count(*) as accepted_cnt
-         FROM RequestAccepted
-         GROUP BY accepter_id
+         , count(*) AS a_friend
+        FROM RequestAccepted
+        GROUP BY accepter_id
 )
-SELECT *
+
+SELECT id
+     , friend_cnt as num
     FROM
     (
-        SELECT IFNULL(requester_id, accepter_id) as id
-            , IFNULL(requested_cnt,0) + IFNULL(accepted_cnt,0) as num
-            FROM
-            (
-                SELECT *
-                    FROM requested T1
-                    LEFT JOIN accepted T2
-                    ON T1.requester_id = T2.accepter_id
+SELECT id
+     , r_friend + a_friend as friend_cnt
+     , RANK() OVER (ORDER BY r_friend + a_friend DESC) R
+     FROM
+     (
+    SELECT ifnull(requester_id, accepter_id) as id
+        , ifnull(r_friend,0) r_friend
+        , ifnull(a_friend,0) a_friend
+        FROM
+        (
+            SELECT *
+                FROM Request T1
+                LEFT JOIN Accept T2
+                ON T1.requester_id = T2.accepter_id
+        
+        UNION 
 
-                UNION
-
-                SELECT *
-                    FROM requested T1
-                    RIGHT JOIN accepted T2
-                    ON T1.requester_id = T2.accepter_id
-            ) T
-    ) T2
-    ORDER BY num DESC
-    LIMIT 1
-    ;
+            SELECT *
+                FROM Request T1
+                RIGHT JOIN Accept T2
+                ON T1.requester_id = T2.accepter_id
+        ) T
+     ) TT
+    ) TTT 
+    WHERE r = 1
