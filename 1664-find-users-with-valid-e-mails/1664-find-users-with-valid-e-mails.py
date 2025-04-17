@@ -1,12 +1,20 @@
 import pandas as pd
 
 def valid_emails(users: pd.DataFrame) -> pd.DataFrame:
-    df_users = users
-    df_users['prefix'] = df_users['mail'].apply(lambda x:x.split('@')[0])
-    df_users['domain'] = df_users['mail'].apply(lambda x:x.split('@')[-1])
-    df_users['is_valid'] = df_users['prefix'].apply(lambda x:x and x[0].isalpha() and all(c.isalnum() or c in ['_','.','-'] for c in x))
+    df_filtered =users.copy()
+    df_filtered['prefix'] = users['mail'].str.split('@').str[0]
+    df_filtered['domain'] = users['mail'].str.split('@').str[1]
 
-    df_users['at_count'] = df_users['mail'].str.count('@')
-        
-    df_result = df_users[(df_users['domain'] == 'leetcode.com') & (df_users['is_valid'] == True) &(df_users['at_count'] == 1)][['user_id', 'name','mail']]
-    return df_result
+    df_filtered['is_valid'] = df_filtered['prefix'].apply(
+        lambda x: True if all([
+            i.isalnum() or i =='_' or i == '-' or i =='.'
+            for i in x
+            ]) else False
+            )
+
+    df_result = df_filtered[
+        (df_filtered['domain'] == 'leetcode.com') &
+        (df_filtered['is_valid'] == True) &
+        (df_filtered['prefix'].str[0].str.isalpha())
+        ]
+    return df_result[['user_id','name','mail']]
