@@ -1,12 +1,12 @@
 import pandas as pd
 
 def total_time(employees: pd.DataFrame) -> pd.DataFrame:
-    df_employees = employees
-    df_employees['diff'] = df_employees['out_time'] - df_employees['in_time']
-    df_grouped = df_employees.groupby(['emp_id','event_day'])['diff'].sum()
-    df_grouped = df_grouped.reset_index()
+    df = employees.copy()
+    df['diff'] = df['out_time'] - df['in_time']
 
-    df_result = df_grouped[['event_day', 'emp_id','diff']]
-    df_result.columns = ['day','emp_id','total_time']
+    df_groupped = df.groupby(['event_day','emp_id'])['diff'].sum().reset_index()
 
-    return df_result
+    df_groupped.columns = ['day', 'emp_id', 'total_time']
+
+    df_groupped = df_groupped.sort_values('emp_id', ascending = True)
+    return df_groupped
