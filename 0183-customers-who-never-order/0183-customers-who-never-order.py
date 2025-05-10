@@ -1,8 +1,9 @@
 import pandas as pd
 
 def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
-    order_customer = orders['customerId'].unique()
+    groupped_order = orders.groupby('customerId').size().reset_index(name ='order_cnt')
 
-    df_result = customers[~customers['id'].isin(order_customer)]
-    df_result = df_result[['name']].rename(columns ={'name':'Customers'})
-    return df_result
+    df_joined = pd.merge(customers, groupped_order, left_on ='id', how ='left', right_on = 'customerId')
+
+    df_joined = df_joined.rename(columns ={'name' : 'Customers'})
+    return df_joined[df_joined['order_cnt'].isna()][['Customers']]
