@@ -1,13 +1,11 @@
 import pandas as pd
 
 def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
-    df_ranked = employee
-    df_ranked['rank'] = df_ranked.groupby('departmentId')['salary'].rank(method = 'dense', ascending = False)
+    max_salary = employee.groupby('departmentId')['salary'].max().reset_index(name = 'max_sal')
 
-    df_filtered = df_ranked[df_ranked['rank']==1]
+    df_join = department.merge(max_salary, how = 'left', left_on = 'id', right_on = 'departmentId')
 
-    df_merged = pd.merge(df_filtered, department, how = 'left', left_on = 'departmentId', right_on = 'id')
-    
-    df_result = df_merged[['name_y', 'name_x', 'salary']]
-    df_result.columns = ['Department', 'Employee', 'Salary']
-    return df_result
+    df_result = df_join.merge(employee, how = 'inner', left_on =['id', 'max_sal'], right_on =['departmentId', 'salary'])
+    rr = df_result[['name_x', 'name_y','salary']]
+    rr.columns = ['Department', 'Employee','Salary']
+    return rr
