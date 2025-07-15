@@ -1,16 +1,21 @@
 # Write your MySQL query statement below
-WITH employee_count AS (
-    SELECT managerId
-        , count(id) as employee_cnt
-        FROM Employee
-        WHERE managerId IS NOT NULL
-        GROUP BY managerId
-        HAVING count(id) >= 5
-)
-
 SELECT name
-    FROM Employee T1
-    INNER JOIN employee_count T2
-    ON T1.id = T2.managerID
-    ;
+    FROM
+    (
+        SELECT *
+            FROM Employee
+    ) T1
+    LEFT JOIN 
+    (
+        SELECT managerId
+            , count(*) as emp_cnt
+            FROM Employee
+            WHERE 1=1 
+            AND managerId is not null
+            GROUP BY managerId
+    ) T2
+    ON T1.id = T2.managerId
+    WHERE 1=1
+      AND emp_cnt>=5
 
+    ;
